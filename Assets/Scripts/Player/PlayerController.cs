@@ -2,12 +2,14 @@
 
 public class PlayerController : MonoBehaviour
 {
+    // 플레이어 애니메이션 상태
     private enum PlayerState
     {
         Idle = 0,
         Move = 1,
         Jump = 2
     }
+
     [Header("Move")]
     [SerializeField] private float moveSpeed = 5.0f;
 
@@ -24,8 +26,6 @@ public class PlayerController : MonoBehaviour
     private SpriteRenderer spriteRenderer;
 
     private PlayerState currentState = PlayerState.Idle;
-
-    
 
     private void Awake()
     {
@@ -48,10 +48,11 @@ public class PlayerController : MonoBehaviour
         Move();
     }
 
-    private void Move()
+    private void Move() // 이동 처리
     {
         float moveX = InputManager.Movement.x;
 
+        // X축 속도는 입력값 따라 변경, Y축은 그대로
         rb.linearVelocity = new Vector2(moveX * moveSpeed, rb.linearVelocity.y);
     }
 
@@ -59,16 +60,18 @@ public class PlayerController : MonoBehaviour
     {
         float moveX = InputManager.Movement.x;
 
+        // FlipX를 이용해서 스프라이트 회전 처리
         if (moveX > 0) spriteRenderer.flipX = false;
         else if (moveX < 0) spriteRenderer.flipX = true;
     }
 
     private void UpdateState()
     {
+        // 다음 상태 계산
         PlayerState nextState = GetState();
 
-        if (currentState == nextState)
-            return;
+        // 상태 바뀌지 않은 경우 애니메이션 갱신 생략
+        if (currentState == nextState) return;
 
         currentState = nextState;
 
@@ -78,29 +81,23 @@ public class PlayerController : MonoBehaviour
 
     private void Jump()
     {
-        if (!InputManager.IsJump)
-            return;
+        if (!InputManager.IsJump) return;
 
-        Debug.Log("Jump Input");
+        if (!groundChecker.IsGrounded) return;
 
-        if (!groundChecker.IsGrounded)
-        {
-            Debug.Log("Jump Failed: Not Grounded");
-            return;
-        }
-        Debug.Log("Jump Success");
-
-        rb.linearVelocity = new Vector2(rb.linearVelocity.x,jumpPower);
+        // X축 속도는 유지하고, Y축 속도만 점프 힘으로 변경
+        rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpPower);
     }
 
     private PlayerState GetState()
     {
-        if (!groundChecker.IsGrounded)
-            return PlayerState.Jump;
+        // 바닥에 닿아 있지 않으면 점프 상태 
+        if (!groundChecker.IsGrounded) return PlayerState.Jump;
 
-        if (Mathf.Abs(InputManager.Movement.x) > 0.01f)
-            return PlayerState.Move;
+        // 좌우 입력이 있으면 이동 상태
+        if (Mathf.Abs(InputManager.Movement.x) > 0.01f) return PlayerState.Move;
 
+        // 이외 대기 상태
         return PlayerState.Idle;
     }
 

@@ -11,12 +11,14 @@ public class InputManager : MonoBehaviour
 
     private void Awake()
     {
+        // Input System 액션 찾기
         moveAction = InputSystem.actions.FindAction("Move");
         jumpAction = InputSystem.actions.FindAction("Jump");
     }
 
     void Update()
     {
+        // 입력값 읽기
         Movement = moveAction.ReadValue<Vector2>();
 
         IsJump = jumpAction.WasPressedThisFrame();
