@@ -8,6 +8,7 @@ public class ScoreManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI scoreText;
 
     private int score = 0;
+    public int Score => score;
 
     private void Awake()
     {
@@ -19,16 +20,16 @@ public class ScoreManager : MonoBehaviour
         UpdateUI();
     }
 
-    public void AddScore(int value)
+    public void AddScore(int value) // 점수 증가
     {
         score += value;
         UpdateUI();
     }
 
-    private void UpdateUI()
+    private void UpdateUI() // 점수 업데이트
     {
         scoreText.text = $"x {score}";
     }
 
-    public int Score => score;
+    
 }
