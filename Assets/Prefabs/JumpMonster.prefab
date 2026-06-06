@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &809513318616980809
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6305963153660215827}
+  m_Layer: 0
+  m_Name: GroundCheck
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6305963153660215827
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 809513318616980809}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.85, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8844711437945751524}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &851745514823153291
 GameObject:
   m_ObjectHideFlags: 0
@@ -162,11 +193,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8844711437945751524}
-  - component: {fileID: 5427000205524686087}
   - component: {fileID: 5870964487849823298}
   - component: {fileID: 4333637944138888073}
+  - component: {fileID: 548240528327480959}
   m_Layer: 0
-  m_Name: DashMonster
+  m_Name: JumpMonster
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -181,7 +212,7 @@ Transform:
   m_GameObject: {fileID: 2571847425250677006}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 90.37, y: -3.1705334, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -190,34 +221,9 @@ Transform:
   - {fileID: 2285528190966843055}
   - {fileID: 5901156995165969848}
   - {fileID: 4913827752144410743}
+  - {fileID: 6305963153660215827}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5427000205524686087
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2571847425250677006}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5916a245c65013548a5db064825ec7cf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DashEnemy
-  eyeObject: {fileID: 6645327505945885125}
-  sightRange: 6
-  playerLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  dashSpeed: 5
-  dashDuration: 5
-  cooldown: 1
-  leftEdgeCheck: {fileID: 8127805560848289677}
-  rightEdgeCheck: {fileID: 8720080953885370663}
-  edgeCheckRadius: 0.1
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 8
 --- !u!50 &5870964487849823298
 Rigidbody2D:
   serializedVersion: 5
@@ -282,6 +288,40 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: -0.3}
   m_Size: {x: 0.8, y: 1.1}
   m_Direction: 0
+--- !u!114 &548240528327480959
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2571847425250677006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5569feb3aaa3ae48b2ed1ad26907777, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::JumpChaseEnemy
+  eyeObject: {fileID: 6645327505945885125}
+  sightRange: 5
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  chaseSpeed: 3
+  stopDistance: 0.3
+  jumpPower: 8
+  jumpRangeX: 2.5
+  playerAboveHeight: 1
+  jumpCooldown: 3
+  jumpSpaceHeight: 1.2
+  jumpSpaceWidth: 0.6
+  jumpSpaceYOffset: 0.6
+  groundCheck: {fileID: 6305963153660215827}
+  leftEdgeCheck: {fileID: 8127805560848289677}
+  rightEdgeCheck: {fileID: 8720080953885370663}
+  groundCheckRadius: 0.1
+  edgeCheckRadius: 0.1
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 8
 --- !u!1 &3889873665333997875
 GameObject:
   m_ObjectHideFlags: 0
@@ -856,7 +896,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0.032379866, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
