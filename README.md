@@ -50,4 +50,4 @@
 | Space | 점프 |
 
 ## 플레이 영상
-https://youtu.be/eZXO3sx0wOY?si=rDUHItoy-gXbs_OJ
+[플레이 영상](https://youtu.be/eZXO3sx0wOY?si=rDUHItoy-gXbs_OJ)
