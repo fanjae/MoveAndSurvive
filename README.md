@@ -1,5 +1,5 @@
 # MoveAndSurvive, 2D 플랫포머 액션 게임
-<img width="820" height="480" alt="Image" src="https://github.com/user-attachments/assets/b1d3aedc-8088-4f38-bc5f-0b6d54410830" />
+<img width="820" height="480" alt="Image" src="https://github.com/user-attachments/assets/2f92a96a-3fbe-4047-b89e-fb2705bc0beb" />
 
 > Unity 기반으로 플레이어 이동, 플랫폼 기믹, 적 AI를 구현한 2D 플랫포머 액션 게임입니다.
 
@@ -50,4 +50,4 @@
 | Space | 점프 |
 
 ## 플레이 영상
-[플레이 영상](https://youtu.be/eZXO3sx0wOY?si=rDUHItoy-gXbs_OJ)
+[플레이 영상](https://www.youtube.com/watch?v=EPq5pyUtuDs)
