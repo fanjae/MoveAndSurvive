@@ -7,7 +7,8 @@ public class PlayerController : MonoBehaviour
     {
         Idle = 0,
         Move = 1,
-        Jump = 2
+        Jump = 2,
+        Fall = 3
     }
 
     [Header("Move")]
@@ -92,7 +93,15 @@ public class PlayerController : MonoBehaviour
     private PlayerState GetState()
     {
         // 바닥에 닿아 있지 않으면 점프 상태 
-        if (!groundChecker.IsGrounded) return PlayerState.Jump;
+        if (!groundChecker.IsGrounded)
+        {
+            // 위로 올라가는 중
+            if (rb.linearVelocity.y > 0.01f)
+                return PlayerState.Jump;
+
+            // 아래로 떨어지는 중
+            return PlayerState.Fall;
+        }
 
         // 좌우 입력이 있으면 이동 상태
         if (Mathf.Abs(InputManager.Movement.x) > 0.01f) return PlayerState.Move;
