@@ -105,3 +105,10 @@ InitTestScene*.unity*
 
 # Auto-generated scenes by play mode tests
 /[Aa]ssets/[Ii]nit[Tt]est[Ss]cene*.unity*
+
+/Assets/2D Ice World/
+/Assets/2D Ice World.meta
+/Assets/Animation/
+/Assets/Animation.meta
+/Assets/Image/
+/Assets/Image.meta
