@@ -15,8 +15,10 @@
 | IDE | Unity Editor, Visual Studio 2022 |
 
 ## 실행 방법
-1. Unity 프로젝트를 엽니다.
-2. Unity Editor에서 Play 버튼을 눌러 실행합니다.
+### 빌드 파일로 실행
+1. GitHub 저장소의 Releases 페이지에서 최신 버전의 ZIP 파일을 다운로드합니다.
+2. 다운로드한 ZIP 파일의 압축을 해제합니다.
+3. 압축 해제된 폴더에서 MoveAndSurvive.exe를 실행합니다.
 
 ## 구현 기능
 ① 플레이어 조작
